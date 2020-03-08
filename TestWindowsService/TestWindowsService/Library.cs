@@ -9,6 +9,8 @@ namespace TestWindowsService
 {
     public static class Library
     {
+        public static string Path { get; } = AppDomain.CurrentDomain.BaseDirectory + @"\Log\";
+        public static string FilePath { get; } = Path + "Logfile.txt";
 
         public static void WriteErrorLog(Exception ex)
         {
@@ -30,8 +32,9 @@ namespace TestWindowsService
             StreamWriter sw = null;
             try
             {
-                sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\Logfile.txt", true);
-                sw.WriteLine($"{DateTime.Now.ToString()}: {Message}");
+                sw = new StreamWriter(FilePath, true);
+                string text = Cipher.Encrypt($"{DateTime.Now.ToString()}: {Message}");
+                sw.WriteLine(text);
                 sw.Flush();
                 sw.Close();
             }

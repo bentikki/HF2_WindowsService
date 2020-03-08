@@ -8,6 +8,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Timers;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace TestWindowsService
 {
@@ -27,6 +28,7 @@ namespace TestWindowsService
             timer1.Elapsed += new ElapsedEventHandler(timer1_Tick);
             timer1.Enabled = true;
             Library.WriteErrorLog("Test window service started.");
+
         }
 
         private void timer1_Tick(object sender, ElapsedEventArgs e)
@@ -39,5 +41,6 @@ namespace TestWindowsService
             timer1.Enabled = false;
             Library.WriteErrorLog("Test window service stopped.");
         }
+
     }
 }
